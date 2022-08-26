@@ -32,8 +32,11 @@ const register = async (req, res, next) => {
     try {
         const newPet = new Pet(req.body);
         const emailExist = await Pet.findOne({ email: newPet.email });
-        const nameExist = await Pet.findOne({ name: newPet.name });
-        if (emailExist || nameExist) return next(setError(409, "this Email || Pet name already exist"));
+        const petNameExist = await Pet.findOne({ petName: newPet.petName });
+        if (emailExist || petNameExist) return next(setError(409, "this Email || Pet name already exist"));
+        if(req.file) {
+          newPet.avatar = req.file.path
+        }
         const petInDb = await newPet.save();
         res.status(201).json(petInDb);
     } catch (error) {
@@ -45,7 +48,6 @@ const login = async (req, res, next) => {
     try {
       const petInDb = await Pet.findOne({ email: req.body.email });
       if (!petInDb) return next(setError(404, "Pet not found"));
-  
       if (bcrypt.compareSync(req.body.password, petInDb.password)) {
         const token = createToken(petInDb._id, petInDb.email);
         return res.status(200).json({ petInDb, token })

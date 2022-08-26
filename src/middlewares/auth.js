@@ -9,9 +9,9 @@ const authorize = async (req, _res, next) => {
     const parsedToken = token.replace("Bearer ", "");
     const validToken = verifyToken(parsedToken, process.env.JWT_SECRET);
     if (!validToken) return next(setError(401, "Unauthorize"));
-    const user = await User.findById(validToken.id);
-    delete user.password;
-    req.user = user;
+    const pet = await Pet.findById(validToken.id);
+    delete pet.password;
+    req.pet = pet;
     next();
   } catch (error) {
     return next(setError(401, 'Unathorize'));

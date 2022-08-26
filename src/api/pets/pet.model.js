@@ -6,10 +6,10 @@ const {validationPassword} = require("../../helpers/utils/util");
 const {setError} = require("../../helpers/utils/error");
 
 const schema = new Schema({
-    name: { type: String, required: true },
+    petName: { type: String, unique: true, required: true },
     email: { type: String, unique: true, required: true },
-    password: { type: String, unique: true, required: true },
-    avatar: { type: String, unique: true},
+    password: { type: String, required: true },
+    avatar: { type: String, unique: false},
     type: { type: String, required: true },
     pictures: [{ type: String, unique: true }],
 }, 
