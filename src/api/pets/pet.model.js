@@ -26,4 +26,4 @@ schema.pre('save', function(next) {
     next();
 });
 
-module.exports = mongoose.model('users', schema)
+module.exports = mongoose.model('pets', schema)

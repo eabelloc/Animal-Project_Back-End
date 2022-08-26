@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require('cors');
 
-//const UserRoutes = require("./api/users/user.routes");
+const PetRoutes = require("./api/pets/pet.routes");
 
 const dotenv = require("dotenv");
 const { connectDb } = require('./helpers/database/db');
@@ -27,7 +27,7 @@ app.use(express.json({ limit: '1mb' }))
 
 app.use(express.urlencoded({ limit: '1mb', extended: true }));
 
-//app.use("/api/user", UserRoutes);
+app.use("/api/pets", PetRoutes);
 
 app.use((error, _req, res, _next) => {
     return res.status(error.status || 500).json(error.message || 'Unexpected error');

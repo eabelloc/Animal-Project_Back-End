@@ -1,4 +1,4 @@
-const User = require("../api/users/user.model");
+const Pet = require("../api/pets/pet.model");
 const { verifyToken } = require("../helpers/utils/token-action");
 const { setError } = require("../helpers/utils/error");
 
