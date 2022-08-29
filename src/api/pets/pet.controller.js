@@ -19,7 +19,7 @@ const getAllPets = async (req, res, next) => {
 const petById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        if (id != req.pet.id) return next(setError(403, "Forbidden"));
+        //if (id != req.pet.id) return next(setError(403, "Forbidden"));
         const pet = await Pet.findById(id);
         if (!pet) return next(setError(404, "Pet not found"));
         return res.status(200).json(pet);
