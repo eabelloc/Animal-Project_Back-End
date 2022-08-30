@@ -8,7 +8,7 @@ PetRoutes.get('/', [authorize], getAllPets);
 PetRoutes.post('/register', upload.single("avatar"), register);
 PetRoutes.post('/login', login);
 PetRoutes.get('/:id', [authorize], petById);
-PetRoutes.patch('/:id', [authorize], update);
+PetRoutes.patch('/:id', [authorize], upload.single("avatar"), update);
 PetRoutes.delete('/:id', [authorize], remove);
 
 module.exports = PetRoutes;

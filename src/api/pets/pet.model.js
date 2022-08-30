@@ -9,7 +9,7 @@ const schema = new Schema({
     petName: { type: String, unique: true, required: true },
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
-    avatar: { type: String, unique: false},
+    avatar: { type: String, },
     type: { type: String, required: true },
     pictures: [{ type: String, unique: true }],
 }, 
